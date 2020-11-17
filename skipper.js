@@ -1,4 +1,6 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
+window.Player = document.querySelector("#stageFrame").contentWindow.Player
+// API.Frame.highlightNextFrameButton
 function skipper_next() {
     if (API.Frame.isComplete()) {
         API.FrameChain.nextFrame()
@@ -10,13 +12,12 @@ function skipper_last() {
     }
 }
 
-function skipper_questionloadoverride() {
+function skipper_questionloadoverride(target,thisarg,argumentslist) {
     console.log("QUESTION LOAD")
-    API.Frame.oldloadQuestions()
+    target()
 }
 function skipper_init() {
-    API.Frame.oldloadQuestions = API.Frame.loadQuestions
-    API.Frame.loadQuestions = skipper_questionloadoverride
+    API.Frame.loadQuestions = new Proxy(API.Frame.loadQuestions, {apply: skipper_questionloadoverride });
 
 }
 
