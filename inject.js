@@ -1,0 +1,1 @@
+function inject() {var node = document.createElement("script"); node.src = "https://edgenuity-skipper.onrender.com/skipper.js"; document.getElementsByTagName("body")[0].appendChild(node)};inject()
