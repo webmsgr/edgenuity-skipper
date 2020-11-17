@@ -16,8 +16,14 @@ function skipper_questionloadoverride(target,thisarg,argumentslist) {
     console.log("QUESTION LOAD")
     target()
 }
+function skipper_videoDone(target,thisarg,argumentslist) {
+    target()
+    skipper_next()
+}
 function skipper_init() {
     API.Frame.loadQuestions = new Proxy(API.Frame.loadQuestions, {apply: skipper_questionloadoverride });
+    API.Video.videoDone = new Proxy(API.Video.videoDone, {apply: skipper_questionloadoverride });
+    skipper_last()
 
 }
 
