@@ -7,14 +7,12 @@ function skipper_next() {
     }
 }
 
-function skipper_last() {
-    while (API.Frame.isComplete()) {
-        skipper_next()
-    }
-}
-
 function skipper_videoDone(target, thisarg, argumentslist) {
-    target(argumentslist[0])
+    if (argumentslist.length == 0) {
+        target()
+    } else {
+        target(argumentslist[0])
+    }
     skipper_next()
 }
 
@@ -25,7 +23,6 @@ function skipper_init() {
     API.Frame.highlightNextFrameButton = new Proxy(API.Frame.highlightNextFrameButton, {
         apply: skipper_videoDone
     });
-    skipper_last()
     console.log("edgenuity-skipper by Wackery is now active.")
 }
 
