@@ -24,7 +24,7 @@ function skipper_init() {
     API.Frame.loadQuestions = new Proxy(API.Frame.loadQuestions, {apply: skipper_questionloadoverride });
     API.Frame.complete = new Proxy(API.Frame.complete, {apply: skipper_videoDone });
     skipper_last()
-
+    console.log("edgenuity-skipper by Wackery is now active.")
 }
 
 skipper_init();
