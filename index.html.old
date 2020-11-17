@@ -1,0 +1,22 @@
+<html>
+
+<body>
+    <h1> edgenuity-skipper </h1>
+    <p> This javascript code when injected into enginuity (on a video page) will automaticly play each video back to
+        back, (basicly autoplay)</p>
+    <p> The short code that will inject the longer source code is <a href="inject.js">here</a>, simply copy paste into
+        console and it will load</p>
+    <p> Bookmark version (Drag into bookmarks bar): </p>
+    <p> Source c<a href='javascript:function inject() {if (typeof window.skipper != "undefined") {return;};var node = document.createElement("script"); node.src = "https://webmsgr.github.io/edgenuity-skipper/skipper.js"; document.getElementsByTagName("body")[0].appendChild(node)};inject()'>edgenuity-skipper</a>ode found here: <a href="https://github.com/webmsgr/edgenuity-skipper">here</a></p>
+    <p> Created by Wackery, 2020 </p>
+    <p> Update Log </p>
+    <ol>
+        <li>1.1: New injection method, prevent from loading multiple times</li>
+        <li>1.0: Release</li>
+    </ol>
+    <script>
+        window.skipper = "no"
+    </script>
+</body>
+
+</html>
