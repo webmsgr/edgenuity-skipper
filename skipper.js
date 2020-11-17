@@ -22,6 +22,9 @@ function skipper_init() {
     API.Frame.complete = new Proxy(API.Frame.complete, {
         apply: skipper_videoDone
     });
+    API.Frame.highlightNextFrameButton = new Proxy(API.Frame.highlightNextFrameButton, {
+        apply: skipper_videoDone
+    });
     skipper_last()
     console.log("edgenuity-skipper by Wackery is now active.")
 }
