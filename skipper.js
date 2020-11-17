@@ -12,7 +12,6 @@ function skipper_last() {
 
 function skipper_questionloadoverride() {
     console.log("QUESTION LOAD")
-    skipper_beep()
     API.Frame.oldloadQuestions()
 }
 function skipper_init() {
