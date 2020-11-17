@@ -10,6 +10,4 @@ This code simply adds a new script tag with the skipping code.
 Bookmark version (Drag into bookmarks bar): <a href='javascript:function inject() {if (typeof window.skipper != "undefined") {return;};var node = document.createElement("script"); node.src = "https://webmsgr.github.io/edgenuity-skipper/skipper.js"; document.getElementsByTagName("body")[0].appendChild(node)};inject()'>edgenuity-skipper</a>
 
 Source code found: [here](https://github.com/webmsgr/edgenuity-skipper/)
-<script>
-    window.skipper = "no" // prevent skipper from loading on this page
-</script>
+
