@@ -9,7 +9,14 @@ function skipper_last() {
         skipper_next()
     }
 }
+
+function skipper_questionloadoverride() {
+    console.log("QUESTION LOAD")
+    API.Frame.oldloadQuestions()
+}
 function skipper_init() {
+    API.Frame.oldloadQuestions = API.Frame.loadQuestions
+    API.Frame.loadQuestions = skipper_questionloadoverride
 
 }
 
