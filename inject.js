@@ -1,1 +1,0 @@
-function inject() {if (typeof window.skipper != "undefined") {return;};var node = document.createElement("script"); node.src = "https://edgenuity-skipper.onrender.com/skipper.js"; document.getElementsByTagName("body")[0].appendChild(node)};inject()
