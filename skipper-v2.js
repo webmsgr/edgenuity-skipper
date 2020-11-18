@@ -2,7 +2,7 @@ window.API = document.querySelector("#stageFrame").contentWindow.API
 window.cooldown = false
 window.cooldownTimeout = 0
 API.autoplay = true
-API.Frame.complete = new Proxy(API.Frame.complete, {
+API.Video.videoDone = new Proxy(API.Video.videoDone, {
     apply: function (target, thisarg, argumentslist) {
         target(argumentslist[0])
         if (!cooldown) {
