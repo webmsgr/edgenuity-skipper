@@ -21,7 +21,7 @@ API.Video.videoDone = new Proxy(API.Video.videoDone, {
         if (API.autoplay) {
             setTimeout(API.FrameChain.nextFrame, 100)
         }
-    }, 500)
+    }, 100)
 });
 
 console.log("edgenuity-skipper now active. Version 2")
