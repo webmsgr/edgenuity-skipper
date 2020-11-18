@@ -16,5 +16,5 @@ API.Video.videoDone = new Proxy(API.Video.videoDone, {
         }
     }
 });
-    
+console.log("edgenuity-skipper now active. Version 2")
 
