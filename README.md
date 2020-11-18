@@ -9,5 +9,5 @@ $.getScript("https://webmsgr.github.io/edgenuity-skipper/skipper-v2.js")
 
 Bookmark version (Drag into bookmarks bar, click to activate): <a href='javascript:$.getScript("https://webmsgr.github.io/edgenuity-skipper/skipper-v2.js")'>edgenuity-skipper</a>
 
-Source code found: [here](https://github.com/webmsgr/edgenuity-skipper/blob/main/skipper.js)
+Source code found: [here](https://github.com/webmsgr/edgenuity-skipper/blob/main/skipper-v2.js)
 
