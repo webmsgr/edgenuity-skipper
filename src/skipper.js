@@ -15,6 +15,9 @@ function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 };
+function reveal() {
+    API.childWindow.$("[fstack]").each(function (index) {this.style=""});
+}
 API.Video.videoDone = new Proxy(API.Video.videoDone, {
     apply: debounce(function (target, thisarg, argumentslist) {
         target(argumentslist[0])
