@@ -1,6 +1,6 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
 window.Player = document.querySelector("#stageFrame").contentWindow.Player
-const delay = 10
+const delay = 50
 let lastClick = 0 
 if (typeof window.skipper == "undefined") {
     window.skipper = "YES"
