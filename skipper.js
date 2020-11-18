@@ -10,7 +10,6 @@ if (typeof window.skipper == "undefined") {
             API.FrameChain.nextFrame()
         }
     }
-
     function skipper_videoDone(target, thisarg, argumentslist) {
         
         if (argumentslist.length == 0) {
@@ -33,6 +32,7 @@ if (typeof window.skipper == "undefined") {
         API.Frame.highlightNextFrameButton = new Proxy(API.Frame.highlightNextFrameButton, {
             apply: skipper_videoDone
         });
+        API.FrameChain.openFrame(API.FrameChain.currentFrame) // Reload the current video
         console.log("edgenuity-skipper by Wackery is now active.")
     }
 
