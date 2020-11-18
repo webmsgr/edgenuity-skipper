@@ -1,9 +1,9 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
 window.cooldown = false
 window.cooldownTimeout = 0
-API.Video.videoDone = new Proxy(API.Video.videoDone, {
+API.Frame.complete = new Proxy(API.Frame.complete, {
     apply: function (target, thisarg, argumentslist) {
-        target()
+        target(argumentslist[0])
         if (!cooldown) {
             setTimeout(API.FrameChain.nextFrame,100)
             cooldown = true
