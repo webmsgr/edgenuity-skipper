@@ -30,13 +30,19 @@ API.Video.videoDone = new Proxy(API.Video.videoDone, {
 function injectoverlay() {
     $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', "https://webmsgr.github.io/edgenuity-skipper/release/skipper.css") );
     $('body').append($('<div id="skipper-overlay" style="">'))
-    $('#skipper-overlay').append($('<div id="skipper-text">edgenuity-skipper<br /><button>hey</button><br /><button id="exitoverlay">Exit Overlay</button></div>'))
-    $('#exitoverlay').attr('onclick','overlayoff()')
+    $('#skipper-overlay').append($('<div id="skipper-text">edgenuity-skipper<br /></div>'))
+    $('#skipper-text').append($("<input id='autoplay-checkbox' type='checkbox' onchange='autoplay_checkbox()'></input><label for='autoplay-checkbox'>Autoplay</label><br />"))
+    $('#autoplay-checkbox')[0].checked = true
+    $('#skipper-text').append($("<button id='reveal' onclick='reveal()'>Reveal All</button><br />"))
+    $('#skipper-text').append($("<button id='exitoverlay' onclick='overlayoff()'>Exit Overlay</button><br />"))
     $('body').keypress(function (event) {
         if (event.key == "|") {
             overlayon()
         }
     })
+}
+function autoplay_checkbox() {
+    API.autoplay = $('#autoplay-checkbox')[0].checked
 }
 function overlayoff() {
     $('#skipper-overlay')[0].style = ""
