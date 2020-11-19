@@ -27,6 +27,22 @@ API.Video.videoDone = new Proxy(API.Video.videoDone, {
         }
     }, 100)
 });
-cssurl = "https://webmsgr.github.io/edgenuity-skipper/release/skipper.css"
-$('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', cssurl) );
+function injectoverlay() {
+    $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', "https://webmsgr.github.io/edgenuity-skipper/release/skipper.css") );
+    $('body').append($('<div id="skipper-overlay" style="">'))
+    $('#skipper-overlay').append($('<div id="skipper-text">edgenuity-skipper<br /><button>hey</button><br /><button id="exitoverlay">Exit Overlay</button></div>'))
+    $('#exitoverlay').attr('onclick','overlayoff()')
+    $('body').keypress(function (event) {
+        if (event.key == "|") {
+            overlayon()
+        }
+    })
+}
+function overlayoff() {
+    $('#skipper-overlay')[0].style = ""
+}
+function overlayon() {
+    $('#skipper-overlay')[0].style = "display: block;"
+}
+injectoverlay()
 console.log("edgenuity-skipper now active. Version 2")
