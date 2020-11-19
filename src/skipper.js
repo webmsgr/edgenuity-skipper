@@ -15,6 +15,7 @@ function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 };
+
 function reveal() {
     API.childWindow.$("[fstack]").each(function (index) {this.style=""});
 }
@@ -26,5 +27,6 @@ API.Video.videoDone = new Proxy(API.Video.videoDone, {
         }
     }, 100)
 });
-
+cssurl = "https://webmsgr.github.io/edgenuity-skipper/release/skipper.css"
+$('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', cssurl) );
 console.log("edgenuity-skipper now active. Version 2")
