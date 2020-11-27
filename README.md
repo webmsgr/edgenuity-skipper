@@ -13,6 +13,7 @@ Bookmark version (Drag into bookmarks bar, click to activate): <a href='javascri
 * Automatic skipping of intro, hint, and exit audio (default off)
 * Reveal all hidden question parts (button in overlay)
 * Seek Anywhere (default off)
+
 # Overlay
 With shift+\ you can access the overlay where you can configure the settings
 
