@@ -66,8 +66,8 @@ function injectoverlay() {
     $('#skipper-text').append($("<input id='intro-skip' type='checkbox' onchange='audio_skip_update(this,\"entry\")'></input><label for='intro-skip'>Skip intro audio</label>"))
     $('#skipper-text').append($("<input id='hint-skip' type='checkbox' onchange='audio_skip_update(this,\"hint\")'></input><label for='hint-skip'>Skip hint audio</label>"))
     $('#skipper-text').append($("<input id='exit-skip' type='checkbox' onchange='audio_skip_update(this,\"exit\")'></input><label for='exit-skip'>Skip exit audio</label><br />"))
-    $('#skipper-text').append($("<input id='seek-anywhere' type='checkbox' onchange='skipperSettings.seekanywhere = this.checked;'></input><label for='seek-anywhere'>Seek anywhere</label><br />"))
-    $('#seek-anywhere')[0].checked = false
+    //$('#skipper-text').append($("<input id='seek-anywhere' type='checkbox' onchange='skipperSettings.seekanywhere = this.checked;'></input><label for='seek-anywhere'>Seek anywhere</label><br />"))
+    //$('#seek-anywhere')[0].checked = false
     $('#skipper-text').append($("<button id='reveal' onclick='reveal()'>Reveal All</button><br />"))
     $('#skipper-text').append($("<button id='exitoverlay' onclick='overlayoff()'>Exit Overlay</button><br />"))
     $('body').keypress(function (event) {
