@@ -84,6 +84,9 @@ function audio_blocker() {
         apply: function (target, thisarg, argumentslist) {
             let audtype = argumentslist[0].split("/").reverse()[0].split(".")[0].split("-").reverse()[0]
             let skip = false
+            if (audtype.startsWith("hint")) {
+                audtype = "hint"
+            }
             console.log(audtype)
             if (audtype in skipperSettings.skip) {
                 skip = skipperSettings.skip[audtype]
@@ -127,9 +130,11 @@ function onseek(target, thisarg, argumentslist) {
 }
 
 function seekanywhere_init() {
-    API.Video.frameVideoControls.limitScrubberPosition = new Proxy(API.Video.frameVideoControls.limitScrubberPosition, {
-        apply: onseek
-    });
+    try {
+        API.Video.frameVideoControls.limitScrubberPosition = new Proxy(API.Video.frameVideoControls.limitScrubberPosition, {
+            apply: onseek
+        });
+    } catch {}
     API.FrameVideoControls = extend(API.FrameVideoControls, function () {
         this.limitScrubberPosition = new Proxy(this.limitScrubberPosition, {
             apply: onseek
@@ -141,7 +146,7 @@ function init() {
     if (window.edjskipper == undefined) {
         injectoverlay()
         audio_blocker()
-        seekanywhere_init()
+        //seekanywhere_init() // broken
         window.edjskipper =  "edgenuity-skipper by wackery"
         console.log("edgenuity-skipper now active. Version 2")
     } else {
