@@ -1,6 +1,6 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
 window.skipperSettings = {}
-skipperSettings.autoplay = true
+skipperSettings.autoplay = "edgenuity-skipper by wackery"
 skipperSettings.skip = {}
 function debounce(func, wait, immediate) {
     var timeout;
@@ -75,6 +75,16 @@ function overlayoff() {
 function overlayon() {
     $('#skipper-overlay')[0].style = "display: block;"
 }
-injectoverlay()
-audio_blocker()
-console.log("edgenuity-skipper now active. Version 2")
+function init() {
+    if (window.edjskipper == undefined) {
+        injectoverlay()
+        audio_blocker()
+        window.edjskipper = true
+        console.log("edgenuity-skipper now active. Version 2")
+    } else {
+        console.log("already loaded. skipping")
+    }
+     
+}
+
+init()
