@@ -1,5 +1,7 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
-API.autoplay = true
+window.skipperSettings = {}
+skipperSettings.autoplay = true
+skipperSettings.skip = {}
 function debounce(func, wait, immediate) {
     var timeout;
     return function executedFunction() {
@@ -21,8 +23,8 @@ function reveal() {
 }
 API.Video.videoDone = new Proxy(API.Video.videoDone, {
     apply: debounce(function (target, thisarg, argumentslist) {
-        target(argumentslist[0])
-        if (API.autoplay) {
+        target.apply(thisarg, argumentslist)
+        if (skipperSettings.autoplay) {
             setTimeout(API.FrameChain.nextFrame, 100)
         }
     }, 100)
@@ -33,6 +35,9 @@ function injectoverlay() {
     $('#skipper-overlay').append($('<div id="skipper-text">edgenuity-skipper<br /></div>'))
     $('#skipper-text').append($("<input id='autoplay-checkbox' type='checkbox' onchange='autoplay_checkbox()'></input><label for='autoplay-checkbox'>Autoplay</label><br />"))
     $('#autoplay-checkbox')[0].checked = true
+    $('#skipper-text').append($("<input id='intro-skip' type='checkbox' onchange='audio_skip_update(this,\"entry\")'></input><label for='intro-skip'>Skip intro audio</label>"))
+    $('#skipper-text').append($("<input id='hint-skip' type='checkbox' onchange='audio_skip_update(this,\"hint\")'></input><label for='hint-skip'>Skip hint audio</label>"))
+    $('#skipper-text').append($("<input id='exit-skip' type='checkbox' onchange='audio_skip_update(this,\"exit\")'></input><label for='exit-skip'>Skip exit audio</label><br />"))
     $('#skipper-text').append($("<button id='reveal' onclick='reveal()'>Reveal All</button><br />"))
     $('#skipper-text').append($("<button id='exitoverlay' onclick='overlayoff()'>Exit Overlay</button><br />"))
     $('body').keypress(function (event) {
@@ -40,6 +45,26 @@ function injectoverlay() {
             overlayon()
         }
     })
+}
+function audio_skip_update(obj,val) {
+    skipperSettings.skip[val] = obj.checked
+}
+function audio_blocker() {
+    API.Audio.playAudioInner = new Proxy(API.Audio.playAudioInner, {
+        apply: function (target, thisarg, argumentslist) {
+            let audtype = argumentslist[0].split("/").reverse()[0].split(".")[0].split("-").reverse()[0]
+            let skip = false
+            console.log(audtype)
+            if (audtype in skipperSettings.skip) {
+                skip = skipperSettings.skip[audtype]
+            }
+            if (skip) {
+                API.Audio.element.trackEnded()
+            } else {
+                target.apply(thisarg, argumentslist)
+            }
+        }
+    });
 }
 function autoplay_checkbox() {
     API.autoplay = $('#autoplay-checkbox')[0].checked
@@ -51,4 +76,5 @@ function overlayon() {
     $('#skipper-overlay')[0].style = "display: block;"
 }
 injectoverlay()
+audio_blocker()
 console.log("edgenuity-skipper now active. Version 2")
