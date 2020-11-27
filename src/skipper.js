@@ -1,7 +1,6 @@
 window.API = document.querySelector("#stageFrame").contentWindow.API
 window.skipperSettings = {}
 skipperSettings.autoplay = true
-skipperSettings.seekanywhere = false
 skipperSettings.skip = {}
 
 // BEGIN OF CODE I DIDNT WRITE
@@ -66,8 +65,6 @@ function injectoverlay() {
     $('#skipper-text').append($("<input id='intro-skip' type='checkbox' onchange='audio_skip_update(this,\"entry\")'></input><label for='intro-skip'>Skip intro audio</label>"))
     $('#skipper-text').append($("<input id='hint-skip' type='checkbox' onchange='audio_skip_update(this,\"hint\")'></input><label for='hint-skip'>Skip hint audio</label>"))
     $('#skipper-text').append($("<input id='exit-skip' type='checkbox' onchange='audio_skip_update(this,\"exit\")'></input><label for='exit-skip'>Skip exit audio</label><br />"))
-    //$('#skipper-text').append($("<input id='seek-anywhere' type='checkbox' onchange='skipperSettings.seekanywhere = this.checked;'></input><label for='seek-anywhere'>Seek anywhere</label><br />"))
-    //$('#seek-anywhere')[0].checked = false
     $('#skipper-text').append($("<button id='reveal' onclick='reveal()'>Reveal All</button><br />"))
     $('#skipper-text').append($("<button id='exitoverlay' onclick='overlayoff()'>Exit Overlay</button><br />"))
     $('body').keypress(function (event) {
@@ -118,35 +115,12 @@ function seekanywhere_limiter(mousepos) {
         xNew = maxlimit;
     return xNew;
 }
-function onseek(target, thisarg, argumentslist) {
-    console.log("SEEK")
-    if (skipperSettings.seekanywhere) {
-        API.Video.frameVideoControls.progress = 1
-        API.Video.maxTimeViewed = API.Video.totalDuration + 1
-        return seekanywhere_limiter.apply(thisarg,argumentslist)
-    } else {
-        return target.apply(thisarg,argumentslist)
-    }
-}
 
-function seekanywhere_init() {
-    try {
-        API.Video.frameVideoControls.limitScrubberPosition = new Proxy(API.Video.frameVideoControls.limitScrubberPosition, {
-            apply: onseek
-        });
-    } catch {}
-    API.FrameVideoControls = extend(API.FrameVideoControls, function () {
-        this.limitScrubberPosition = new Proxy(this.limitScrubberPosition, {
-            apply: onseek
-        });
-    })
-}
 
 function init() {
     if (window.edjskipper == undefined) {
         injectoverlay()
         audio_blocker()
-        //seekanywhere_init() // broken
         window.edjskipper =  "edgenuity-skipper by wackery"
         console.log("edgenuity-skipper now active. Version 2")
     } else {
