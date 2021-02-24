@@ -7,7 +7,7 @@ To load this, go into a lesson and paste this into the console:
 $.getScript("https://webmsgr.github.io/edgenuity-skipper/release/skipper.min.js")
 ```
 
-Bookmark version (Drag into bookmarks bar, click to activate): <a href='javascript:$.getScript("https://webmsgr.github.io/edgenuity-skipper/release/skipper.min.js")'>edgenuity-skipper</a>
+Bookmark version (Drag into bookmarks bar, click to activate): <a href='javascript:$.getScript("https://webmsgr.github.io/edgenuity-skipper/release/skipper.min.js");void(0);'>edgenuity-skipper</a>
 # Features
 * Autoplay on videos (default on)
 * Automatic skipping of intro, hint, and exit audio (default off)
